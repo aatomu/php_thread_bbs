@@ -19,10 +19,10 @@ PHPで2ch(5ch?)っぽいのを作りました.
  * git clone https://github.com/atomu21263/php_thread_bbs.git  
 ## 2.インストール(設定 *念のためやります) 要検証  
  * chmod 775 ./index.php  
- * chmod 771 ./log.sh  
- * chmod 771 ./list.sh  
- * chmod 771 ./run.sh  
- * chmod 776 ./thread  
+ * chmod 775 ./log.sh  
+ * chmod 775 ./list.sh  
+ * chmod 775 ./run.sh  
+ * chmod 775 ./thread  
 ## 3.使い方(ぺージの作成)  
  * ブラウザからweb鯖にはいりbbs/?select_page=<任意>&type=create  
 ## 4.使い方(実際に読み書きする)  
