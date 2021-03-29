@@ -63,7 +63,7 @@
         $fp = fopen("./thread/".$page.".txt", "a");
         fwrite($fp,"Name:".$name.",Date:".$date.",Text:".$message."\n");
         fclose($fp);
-        header("Location: ./?=".$page);
+        header("Location: ./?page=".$page);
         exit;
       }
     ?>
