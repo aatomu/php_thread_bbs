@@ -63,8 +63,8 @@
         $fp = fopen("./thread/".$page.".txt", "a");
         fwrite($fp,"Name:".$name.",Date:".$date.",Text:".$message."\n");
         fclose($fp);
-        echo "二重で送られないように!";
-        exit();
+        header("Location: ./");
+        exit;
       }
     ?>
     <h1> made by atomu21263</h>
