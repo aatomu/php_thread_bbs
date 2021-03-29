@@ -1,4 +1,4 @@
-page_name=${1}
+﻿page_name=${1}
 run_type=${2}
 if [ ${page_name} != "" ]
   then
