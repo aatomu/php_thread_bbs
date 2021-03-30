@@ -35,11 +35,8 @@
   </head>
   <body>
     <!--サイドバー-->
-        <!--heightは見出し*50 行*20-->
+        <!--heightは見出し*50-->
     <table border="10" width="200" bgcolor="faf0e6" cellpadding="0" cellspacing="10" align="right" id="sidebar">
-      <caption>
-        サイドバー
-      </caption>
       <tr height="50">
         <td>
           <font color="red">
