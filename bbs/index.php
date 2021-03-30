@@ -11,8 +11,8 @@
         #sidebar{
           position: -webkit-sticky;
           position: sticky;
-          top: 15%;
-          right: 5%;
+          top: 20%;
+          right: 10px;
           float: right;
         }
         #art{
