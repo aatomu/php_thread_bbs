@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <style>
       body {
-        background-color: #ffff80;
+        background-color: #FFF8DC;
       }
     </style>
     <style type="text/css">
@@ -19,11 +19,12 @@
           font-size: 200%;
         }
         #top {
-          background-color: #ffffff;
-          outline-style: dashed;
+          background-color: #FFDAB9;
+          outline-style: double;
           outline-width: 10px;
           font-size: 500%;
           text-align: center;
+          margin: 2% 10% 0%;
         }
         #text_box {
           font-size: 150%;
@@ -36,7 +37,7 @@
     <!--サイドバー-->
       <!--heightは見出し*50-->
     <div id="sidebar">
-      <table border="5" width="200" bgcolor="faf0e6" cellpadding="0" cellspacing="10">
+      <table border="5" width="200" bgcolor="F0FFFF" cellpadding="0" cellspacing="10">
         <tr height="50">
           <td>
             <font color="red">
