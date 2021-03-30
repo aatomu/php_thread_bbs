@@ -127,7 +127,7 @@
         echo shell_exec($cmd);
       }else{
         //page=がない時にlistの表示
-        $url = ($_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]);
+        $url = ((empty($_SERVER["HTTPS"]) ? "http://" : "https://").$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]);
         $cmd = ('./list.sh '.$url);
         echo shell_exec($cmd);
       }
@@ -140,6 +140,7 @@
         echo shell_exec($cmd);
       }
     ?>
+    <hr size=10 color="black" noshade>
     <form action="" method="post">
       <h3>Name:</h><br>
         <input type="text" id="name" name="name">
