@@ -126,7 +126,7 @@
     <?php
       $maxline =10;
       $line = shell_exec('wc -l ./thread/'.$page.".txt | sed \"s|./thread/${page}.txt||\"");
-      $line_text = $line + 1
+      $line_text = $line + 1;
       $page = $_GET['page'];
       $name = "";
       $message = "";
