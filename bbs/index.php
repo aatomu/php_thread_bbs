@@ -12,12 +12,10 @@
           position: -webkit-sticky;
           position: sticky;
           top: 15%;
+          right: 5%;
         }
         #art{
-          position: fixed;
           font-size: 200%;
-          bottom: 5%;
-          right: 10%;
         }
         #top {
           background-color: #ffffff;
@@ -35,24 +33,25 @@
   </head>
   <body>
     <!--サイドバー-->
-        <!--heightは見出し*50-->
-    <table border="5" width="200" bgcolor="faf0e6" cellpadding="0" cellspacing="10" align="right" id="sidebar">
-      <tr height="50">
-        <td>
-          <font color="red">
-            <u>
-              <b>
-                -site map-
-              </b>
-            </u>
-          </font>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          任意
-        </td>
-      </tr>
+      <!--heightは見出し*50-->
+    <div id="sidebar">
+      <table border="5" width="200" bgcolor="faf0e6" cellpadding="0" cellspacing="10">
+        <tr height="50">
+          <td>
+            <font color="red">
+              <u>
+                <b>
+                  -site map-
+                </b>
+              </u>
+            </font>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            任意
+          </td>
+        </tr>
         <tr height="50">
           <td>
             <font color="red">
@@ -65,7 +64,7 @@
           </td>
         </tr>
         <tr>
-          <th background="background.png">
+          <td>
             create by
             <br>
             atomu21263
@@ -74,22 +73,17 @@
               >twitter<
             </a>
         </tr>
-        <tr>
-          <td>
-              アクセスカウンター
-              ※プログラムを自由にはめてね
-          </td>
-        </tr>
-    </table>
-    <!--Ascii Art-->
-    <div id="art">
-     <pre>
+      </table>
+      <!--Ascii Art-->
+      <div id="art">
+        <pre>
  ∧___∧
 ( ´∀` )
 (     )
 |  |  |
 (__)__)
-      </pre>
+        </pre>
+      </div>
     </div>
     <!--メイン-->
     <?php
