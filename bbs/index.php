@@ -124,7 +124,7 @@
       <input type="submit" name="send" value="送信する">
     </form>
     <?php
-      $maxline =10;
+      $maxline =50;
       $line = shell_exec('wc -l ./thread/'.$page.".txt | sed \"s|./thread/${page}.txt||\"");
       $line_text = $line + 1;
       $page = $_GET['page'];
