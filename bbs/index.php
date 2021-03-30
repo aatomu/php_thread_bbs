@@ -8,6 +8,17 @@
       }
     </style>
     <style type="text/css">
+        #sidebar{
+          position: -webkit-sticky;
+          position: sticky;
+          top: 15%;
+          }
+        #art{
+          position: fixed;
+          font-size: 200%;
+          bottom: 5%;
+          right: 10%;
+          }   
         #top {
           background-color: #ffffff;
           outline-style: dashed;
@@ -23,6 +34,64 @@
     </style>
   </head>
   <body>
+    <!--サイドバー-->
+        <!--heightは見出し*50 行*20-->
+    <table border="10" width="200" background="" cellpadding="0" cellspacing="10" align="right" id="sidebar">
+      <caption>
+        サイドバー
+      </caption>
+      <tr height="50">
+        <td>
+          <font color="red">
+            <u>
+              <b>
+                -site map-
+              </b>
+            </u>
+          </font>
+        </td>
+      </tr>
+      <tr>
+        任意(しても問題なし
+      </tr>
+        <tr height="50">
+          <td>
+            <font color="red">
+              <u>
+                <b>
+                  -other-
+                </b>
+              </u>
+            </font>
+          </td>
+        </tr>
+        <tr>
+          <th background="background.png">
+            create by
+            <br>
+            atomu21263
+            <br>
+            <a href="https://twitter.com/atomu21263">
+              >twitter<
+            </a>
+        </tr>
+        <tr>
+          <td>
+              アクセスカウンター
+              ※プログラムを自由にはめてね
+          </td>
+        </tr>
+    </table>
+    <!--Ascii Art-->
+    <div id="art">
+     <pre>
+ ∧___∧
+( ´∀` )
+(     )
+|  |  |
+(__)__)
+      </pre>
+    </div>
     <!--メイン-->
     <?php
       $page = $_GET['page'];
@@ -67,6 +136,5 @@
         exit;
       }
     ?>
-    <h1> made by atomu21263</h>
   </body>
 </html>
