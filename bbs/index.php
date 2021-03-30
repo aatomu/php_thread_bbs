@@ -126,6 +126,7 @@
     <?php
       $maxline =10;
       $line = shell_exec('wc -l ./thread/'.$page.".txt | sed \"s|./thread/${page}.txt||\"");
+      $line_text = $line + 1
       $page = $_GET['page'];
       $name = "";
       $message = "";
@@ -139,7 +140,7 @@
         $date = date("Y/m/d H:i:s");
         $fp = fopen("./thread/".$page.".txt", "a");
         $line = str_replace(array("\r", "\n"), '', $line);
-        fwrite($fp,"No.".$line.",Name:".$name.",Date:".$date.",Text:".$message."\n");
+        fwrite($fp,"No.".$line_text.",Name:".$name.",Date:".$date.",Text:".$message."\n");
         fclose($fp);
         header("Location: ./?page=".$page);
         exit;
