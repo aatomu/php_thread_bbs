@@ -23,6 +23,7 @@ PHPで2ch(5ch?)っぽいのを作りました.
  * chmod 775 ./list.sh  
  * chmod 775 ./run.sh  
  * chmod 777 ./thread/  
+ * chmod 777 ./thread/*
  * 任意のエディターでindex.phpの$maxlineを設定(初期は10) これの数値によって一つのファイルに表示できる限界が変わります
 ## 3.使い方(ぺージの作成)  
  * ブラウザからweb鯖にはいりbbs/?select_page=<任意>&type=create  
