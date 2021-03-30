@@ -12,13 +12,13 @@
           position: -webkit-sticky;
           position: sticky;
           top: 15%;
-          }
+        }
         #art{
           position: fixed;
           font-size: 200%;
           bottom: 5%;
           right: 10%;
-      }
+        }
         #top {
           background-color: #ffffff;
           outline-style: dashed;
@@ -138,7 +138,8 @@
         $message = $_POST["message"];
         $date = date("Y/m/d H:i:s");
         $fp = fopen("./thread/".$page.".txt", "a");
-        fwrite($fp,"Name:".$name.",Date:".$date.",Text:".$message."\n");
+        $line = str_replace(array("\r", "\n"), '', $line);
+        fwrite($fp,"No.".$line.",Name:".$name.",Date:".$date.",Text:".$message."\n");
         fclose($fp);
         header("Location: ./?page=".$page);
         exit;
