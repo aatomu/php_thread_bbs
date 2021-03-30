@@ -13,6 +13,7 @@
           position: sticky;
           top: 15%;
           right: 5%;
+          float: right;
         }
         #art{
           font-size: 200%;
