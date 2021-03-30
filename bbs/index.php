@@ -124,10 +124,16 @@
       <input type="submit" name="send" value="送信する">
     </form>
     <?php
+      $maxline =10;
+      $line = shell_exec('wc -l ./thread/'.$page.".txt | sed \"s|./thread/${page}.txt||\"");
       $page = $_GET['page'];
       $name = "";
       $message = "";
       if (isset($_POST['send']) === true) {
+        if ($line >= $maxline) {
+          echo "<div id='text_box'>メッセージが".$maxline."を超えました\n新しく立ててください</div>";
+          exit;
+        }
         $name = $_POST["name"];
         $message = $_POST["message"];
         $date = date("Y/m/d H:i:s");
