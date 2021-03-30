@@ -22,7 +22,7 @@ PHPで2ch(5ch?)っぽいのを作りました.
  * chmod 775 ./log.sh  
  * chmod 775 ./list.sh  
  * chmod 775 ./run.sh  
- * chmod 775 ./thread  
+ * chmod 777 ./thread/  
 ## 3.使い方(ぺージの作成)  
  * ブラウザからweb鯖にはいりbbs/?select_page=<任意>&type=create  
 ## 4.使い方(実際に読み書きする)  
