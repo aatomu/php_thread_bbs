@@ -11,7 +11,7 @@ do
   file=$(echo -e "${file}" | sed '1d')
   if [ "${file}" = "" ]
    then
-    echo "<br><br>"
+    echo "<br>"
     exit
   fi
 done
