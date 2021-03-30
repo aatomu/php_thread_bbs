@@ -136,7 +136,7 @@
         echo shell_exec($cmd);
       }
     ?>
-    <hr size=10 color="black" noshade>
+    <hr size=5 color="gray">
     <form action="" method="post">
       <h3>Name:</h><br>
         <input type="text" id="name" name="name">
