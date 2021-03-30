@@ -4,7 +4,7 @@ PHPで2ch(5ch?)っぽいのを作りました.
 開発環境:apache2,php7.3
 
 ディレクトリ構造:  
-/var/www/html/bbs/  
+`/var/www/html/bbs/  
 ├log.sh(閲覧時に使います)  
 ├list.sh(一覧表示に使います)  
 ├run.sh(スレッドの消去,作成に使います)  
@@ -12,7 +12,7 @@ PHPで2ch(5ch?)っぽいのを作りました.
 └thread(この下にthreadのlogがたまります)  
   ├テスト.txt  
   ├おすきなように.txt  
-  └以下略  
+  └以下略`  
 # インストール&使い方  
 ## 1.インストール(ダウンロード)  
  * cd /web/server/path  
