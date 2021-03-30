@@ -18,7 +18,7 @@
           font-size: 200%;
           bottom: 5%;
           right: 10%;
-          }   
+      }
         #top {
           background-color: #ffffff;
           outline-style: dashed;
