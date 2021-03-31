@@ -90,7 +90,7 @@
     <!--メイン-->
     <?php
       //表示限界
-      $maxline =500;
+      $maxline = 500;
       //表示するページ
       $page = $_GET['page'];
       //行数の入手&整形
@@ -108,33 +108,22 @@
         //メッセージのいろいろ
         $name = $_POST["name"];
         $message = $_POST["message"];
-        $message = str_replace(array("\r\n","\r","\n"), '<br>', $message);
         $date = date("Y/m/d H:i:s");
-        $fp = fopen("./thread/".$page.".txt", "a");
         $line = str_replace(array("\r", "\n"), '', $line);
-        fwrite($fp,"No.".$line_text.",Name:".$name.",Date:".$date.",Text:".$message."\n");
+        //メッセージ 無効化
+        $message = htmlspecialchars($message,ENT_QUOTES,'utf-8');
+        $message = str_replace(",","，",$message);
+        $message = str_replace(array("\r\n","\n","\r"),"<br>",$message);
+        $message = str_replace(" ","&ensp;",$message);
+        //name message lineを文に変形
+        $write = ("No.".$line_text.",Name:".$name.",Date:".$date.",Text:".$message."\n");
+        $fp = fopen("./thread/".$page.".txt", "a");
+        fwrite($fp,$write);
         fclose($fp);
         header("Location: ./?page=".$page);
         exit;
       }
-      if ( $page != "") {
-        //page表示
-        $cmd = ('./log.sh '.$page);
-        echo shell_exec($cmd);
-      }else{
-        //page=がない時にlistの表示
-        $url = ((empty($_SERVER["HTTPS"]) ? "http://" : "https://").$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]);
-        $cmd = ('./list.sh '.$url);
-        echo shell_exec($cmd);
-      }
-      //変数取得して実行
-      if (isset($_GET['newpage']) === true && isset($_GET['type']) === true) {
-        $newpage = $_GET['newpage'];
-        $type = $_GET['type'];
-        //page生成
-        $cmd = ('./run.sh '.$newpage.' '.$type);
-        echo shell_exec($cmd);
-      }
+    require('./function.php');
     ?>
     <hr size=5 color="gray">
     <form action="" method="post">
