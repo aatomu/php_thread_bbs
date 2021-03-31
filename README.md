@@ -5,12 +5,10 @@ PHPで2ch(5ch?)っぽいのを作りました.
 
 ディレクトリ構造:  
 /var/www/html/bbs/  
-├log.sh(閲覧時に使います)  
-├list.sh(一覧表示に使います)  
-├run.sh(スレッドの消去,作成に使います)  
+├function.sh(閲覧 作成,消去 一覧表示 のプログラム)  
 ├index.php(ここが閲覧&一覧表示&スレッドの消去,作成 ページ)  
 └thread(この下にthreadのlogがたまります)  
-　├テスト.txt  
+　├test.txt  
 　├おすきなように.txt  
 　└以下略 
 # インストール&使い方  
@@ -19,13 +17,12 @@ PHPで2ch(5ch?)っぽいのを作りました.
  * git clone https://github.com/atomu21263/php_thread_bbs.git  
 ## 2.インストール(設定 *念のためやります) 要検証  
  * chmod 775 ./index.php  
- * chmod 775 ./log.sh  
- * chmod 775 ./list.sh  
- * chmod 775 ./run.sh  
- * chmod 777 ./thread/  
- * chmod 777 ./thread/*
- * (任意) 任意のエディターでindex.phpの$maxlineを設定(初期は500) これの数値によって表示(保存)限界が変わります  
+ * chmod 775 ./function.php  
+ * chmod 776 ./thread/  
+ * chmod 677 ./thread/*
+ * (任意) 任意のエディターでindex.phpの$maxlineを設定(初期は500) これの数値によって保存限界(≒表示限界)が変わります  
 　※また多すぎると2回リロードしないと表示されない可能性あり  
+  >> 楽をする用: chmod 775 ./bbs/* ; chmod 776 ./bbs/thread ;chmod 677 ./bbs/thread/*  
 ## 3.使い方(ぺージの作成)  
  * ブラウザからweb鯖にはいりbbs/?select_page=<任意>&type=create  
 ## 4.使い方(実際に読み書きする)  
