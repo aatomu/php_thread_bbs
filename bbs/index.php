@@ -117,9 +117,7 @@
         $message = str_replace(" ","&ensp;",$message);
         //name message lineを文に変形
         $write = ("No.".$line_text.",Name:".$name.",Date:".$date.",Text:".$message."\n");
-        $fp = fopen("./thread/".$page.".txt", "a");
-        fwrite($fp,$write);
-        fclose($fp);
+        file_put_contents("./thread/".$page.".txt",$write,FILE_APPEND | LOCK_EX);
         header("Location: ./?page=".$page);
         exit;
       }
