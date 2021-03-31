@@ -26,10 +26,10 @@ function thread_log() {
   //メッセージ変換 \r\n \r \n >> <br>
   $message = str_replace(array("\r\n","\r","\n"), '<br>', $message);
   //メッセージ変換 No Name Date Text >> table
-  $message = str_replace("No.","</table><br><table border='5' bgcolor='f5f5f5'><tr width='30%' height='10'><td><div id='text_box'>No.",$message);
+  $message = str_replace("No.","</table><br><table border='5' width=30% bgcolor='f5f5f5'><tr height='10'><td><div id='text_box'>No.",$message);
   $message = str_replace(",Name:","&ensp;&ensp;Name:",$message);
   $message = str_replace(",Date:","&ensp;&ensp;Date:",$message);
-  $message = str_replace(",Text:","</div></td></tr><tr width='30%' ><td><div id='text_box'>",$message);
+  $message = str_replace(",Text:","</div></td></tr><tr><td><div id='text_box'>",$message);
   $message = ($message."</table>");
   //メッセージ表示
   echo ($message);
