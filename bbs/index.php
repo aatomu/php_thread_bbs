@@ -184,7 +184,6 @@
           $file_name = shell_exec("ls ./file/| grep \"".$_POST['down_file']."\"");
           $file_pass = preg_replace("|.*__|","",$file_name);
           $file_pass = preg_replace("|\s|","",$file_pass);
-          echo $file_pass."aa".$_POST['down_pass'];
           if ($_POST['down_pass'] == $file_pass) {
             // ファイルのパス
             $filepath = ("./file/".$_POST['down_file']);
