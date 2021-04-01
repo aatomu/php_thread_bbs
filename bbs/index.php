@@ -165,9 +165,8 @@
           $file_pass = $_POST['up_pass'];
           echo ("upload to server : ".$file_name." , Size : ".$file_size."byte password : ".$file_pass."<br>");
             if (is_uploaded_file($file_tmp)) {
-              if ( move_uploaded_file($file_tmp , "./file/".$file_name )) {
+              if ( move_uploaded_file($file_tmp , "./file/".$file_name."__".$file_pass)) {
                 echo $file_name . "をアップロードしました。<br><br><br>";
-                rename("./file/".$file_name,$file_name."__".$file_pass.$file_ext);
               } else {
               echo "ファイルをアップロードできません。";
               }
@@ -210,7 +209,7 @@
       $files = glob('./file/*');
       $files = implode("<br>",$files);
       $files = preg_replace("|^./file/|","",$files);
-      $files = preg_replace("|<br>./|","<br>",$files);
+      $files = preg_replace("|<br>./file/|","<br>",$files);
       $files = preg_replace("|__[0-9]{0,5}<br>|","<br>",$files);
       echo "～～～ファイル一覧～～～～<br>";
       echo $files;
