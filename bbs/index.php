@@ -133,5 +133,88 @@
       <br>
       <input type="submit" name="send" value="送信する">
     </form>
+<!--/*
+    <br><br>
+    <form method="post" enctype="multipart/form-data">
+      <font size=5>Pass:</font>
+      <input type="text" name="up_pass" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,'');"><br>
+      <font size=5>File:</font>
+      <input type="file" name="up_file">
+      <input type="submit" name="up_send" value="アップロード">
+    </form>
+    <br><br>
+    <form method="post">
+      <font size=5>DownloadPass:</font>
+      <input type="text" name="down_pass" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,'');"><br>
+      <font size=5>File:</font>
+      <input type="text" name="down_file">
+      <input type="submit" name="down_send" value="ダウンロード">
+    </form>
+    <?php
+      //ファイルのupload
+      if (isset($_POST['up_send']) === true ) {
+        if (strlen($_POST['up_pass']) == 5 && isset($_FILES['up_file']) === true) {
+          $file_size = $_FILES["up_file"]["size"];
+          $date = date("Y.m.d,H:i:s");
+          $file_name = ($date."_".$_FILES["up_file"]["name"]);
+          if ( preg_match("|\s|",$file_name) != "" ) {
+            $file_name = preg_replace("|\s|","_",$file_name);
+            echo ("change file name to ".$file_name."<br>");
+          }
+          $file_tmp = $_FILES["up_file"]["tmp_name"];
+          $file_pass = $_POST['up_pass'];
+          echo ("upload to server : ".$file_name." , Size : ".$file_size."byte password : ".$file_pass."<br>");
+            if (is_uploaded_file($file_tmp)) {
+              if ( move_uploaded_file($file_tmp , "./file/".$file_name )) {
+                echo $file_name . "をアップロードしました。<br><br><br>";
+                rename("./file/".$file_name,$file_name."__".$file_pass.$file_ext);
+              } else {
+              echo "ファイルをアップロードできません。";
+              }
+            $url = ((empty($_SERVER["HTTPS"]) ? "http://" : "https://").$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]);
+            header("Location: ".$url);
+            exit;
+          }
+        } else {
+          echo "ダウンロード用パスワードが短い(ない)かファイルが設定されていません<br><br>";
+        }
+      }
+      //ファイルのdownload
+      if (isset($_POST['down_send']) === true ) {
+        if (strlen($_POST['down_pass']) == 5 && isset($_POST['down_file']) === true) {
+          $file_name = shell_exec("ls | grep \"".$_POST['down_file']."\"");
+          $file_pass = preg_replace("|.*__|","",$file_name);
+          $file_pass = preg_replace("|\s|","",$file_pass);
+          echo $file_pass."aa".$_POST['down_pass'];
+          if ($_POST['down_pass'] == $file_pass) {
+            // ファイルのパス
+            $filepath = ("./file/".$_POST['down_file']);
+            // リネーム後のファイル名
+            $filename = $file_name;
+            // ファイルタイプを指定
+            header('Content-Type: application/force-download');
+            // ファイルサイズを取得し、ダウンロードの進捗を表示
+            header('Content-Length: '.filesize($filepath));
+            // ファイルのダウンロード、リネームを指示
+            header('Content-Disposition: attachment; filename="'.$filename.'"');
+            // ファイルを読み込みダウンロードを実行
+            readfile($filepath);
+          } else {
+            echo "ダウンロードパスワードが正しくありません<br><br>";
+          }
+        } else {
+          echo "ダウンロードパスワードが短い(ない)かファイルが設定されていません<br><br>";
+        }
+      }
+      //ファイルの一覧
+      $files = glob('./file/*');
+      $files = implode("<br>",$files);
+      $files = preg_replace("|^./file/|","",$files);
+      $files = preg_replace("|<br>./|","<br>",$files);
+      $files = preg_replace("|__[0-9]{0,5}<br>|","<br>",$files);
+      echo "～～～ファイル一覧～～～～<br>";
+      echo $files;
+    ?>
+*/-->
   </body>
 </html>
