@@ -181,7 +181,7 @@
       //ファイルのdownload
       if (isset($_POST['down_send']) === true ) {
         if (strlen($_POST['down_pass']) == 5 && isset($_POST['down_file']) === true) {
-          $file_name = shell_exec("ls | grep \"".$_POST['down_file']."\"");
+          $file_name = shell_exec("ls ./file/| grep \"".$_POST['down_file']."\"");
           $file_pass = preg_replace("|.*__|","",$file_name);
           $file_pass = preg_replace("|\s|","",$file_pass);
           echo $file_pass."aa".$_POST['down_pass'];
