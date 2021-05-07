@@ -177,7 +177,8 @@ function thread_list() {
   } while ($file != "");
 }
 
-function file_box() {
+function file_upload() {
+  global $save_path;
   $input = ("\n".'    <br><br>');
   $input = ($input."\n".'    <form method="post" enctype="multipart/form-data">');
   $input = ($input."\n".'      <font size=5>Pass:</font>');
@@ -187,18 +188,7 @@ function file_box() {
   $input = ($input."\n".'      <input type="submit" name="up_send" value="アップロード">');
   $input = ($input."\n".'    </form>');
   $input = ($input."\n".'    <br><br>');
-  $input = ($input."\n".'    <form method="post">');
-  $input = ($input."\n".'      <font size=5>DownloadPass:</font>');
-  $input = ($input."\n".'      <input type="text" name="down_pass" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,"");"><br>');
-  $input = ($input."\n".'      <font size=5>File:</font>');
-  $input = ($input."\n".'      <input type="text" name="down_file">');
-  $input = ($input."\n".'      <input type="submit" name="down_send" value="ダウンロード">');
-  $input = ($input."\n".'    </form>');
   echo $input;
-}
-
-function file_upload() {
-  global $save_path;
   if (isset($_POST['up_send']) === true ) {
     if (strlen($_POST['up_pass']) == 5 && isset($_FILES['up_file']) === true) {
       $file_size = $_FILES["up_file"]["size"];
@@ -228,6 +218,23 @@ function file_upload() {
 
 function file_download() {
   global $save_path;
+  //ファイルの一覧
+  $files=shell_exec("ls -1 ".$save_path.' | grep -E "__[0-9]{0,5}" | sed -e "s|__[0-9][0-9][0-9][0-9][0-9]||g"');
+  while($files != "") {
+    $file_name=preg_replace("|\n.*|u","",$files);
+    $file_list=($file_list."\n".'<br><input type="radio" name="down_file" value="'.$file_name.'">'.$file_name);
+    $files=str_replace($file_name."\n","",$files);
+  }
+  $input = "\n";
+  $input = ($input."\n".'    ～～～ファイル一覧～～～～<br>');
+  $input = ($input."\n".'    <form method="post">');
+  $input = ($input."\n".'      <font size=5>File:</font>');
+  $input = ($input."\n".$file_list."<br>");
+  $input = ($input."\n".'      <font size=5>DownloadPass:</font>');
+  $input = ($input."\n".'      <input type="text" name="down_pass" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,"");"><br>');
+  $input = ($input."\n".'      <input type="submit" name="down_send" value="ダウンロード">');
+  $input = ($input."\n".'    </form>');
+  echo $input;
   if (isset($_POST['down_send']) === true ) {
     if (strlen($_POST['down_pass']) == 5 && isset($_POST['down_file']) === true) {
       $file_name = shell_exec("ls ".$save_path."| grep \"".$_POST['down_file']."\"");
@@ -251,15 +258,5 @@ function file_download() {
       echo "ダウンロードパスワードが短い(ない)かファイル名が設定されていません<br><br>";
     }
   }
-}
-
-function file_view() {
-  global $save_path;
-  //ファイルの一覧
-  $files = glob($save_path."*");
-  $files = shell_exec("ls ".$save_path.' | grep -E "__[0-9]{0,5}" | sed -z "s|\n|<br>|g"');
-  $files = preg_replace("|__[0-9]{0,5}<br>|","<br>",$files);
-  echo "～～～ファイル一覧～～～～<br>";
-  echo $files;
 }
 ?>
