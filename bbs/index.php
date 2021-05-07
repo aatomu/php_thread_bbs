@@ -112,7 +112,7 @@
       file_box();
       file_upload();
       file_download();
-      file_view();
-    ?>*/
+      file_view();*/
+    ?>
   </body>
 </html>
