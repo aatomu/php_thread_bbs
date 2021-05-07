@@ -110,8 +110,7 @@
       }
 /*      $save_path = "./file/";
       file_upload();
-      file_download();
-      file_view();*/
+      file_download();*/
     ?>
   </body>
 </html>
