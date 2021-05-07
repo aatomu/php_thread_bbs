@@ -109,7 +109,6 @@
         thread_box_user();
       }
 /*      $save_path = "./file/";
-      file_box();
       file_upload();
       file_download();
       file_view();*/
