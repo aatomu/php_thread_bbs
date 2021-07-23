@@ -108,9 +108,10 @@
       } else {
         thread_box_user();
       }
-/*      $save_path = "./file/";
-      file_upload();
-      file_download();*/
+/*
+      $save_path = "./file/";
+      file();
+*/
     ?>
   </body>
 </html>
