@@ -35,10 +35,10 @@ function thread_box_user() {
   } else {
     $input = ("\n".'    <form action="" method="post">');
     $input = ($input."\n".'      <font size="5">Name:</font><br>');
-    $input = ($input."\n".'        <input type="text" name="user" value="" onkeyup="this.value=this.value.replace(/[^0-9]+/i,'')" onblur="this.value=this.value.replace(/[^0-9]+/i,'')">');
+    $input = ($input."\n".'        <input type="text" name="user" value="" onkeyup="this.value=this.value.replace(/[^0-9]+/i,\'\')" onblur="this.value=this.value.replace(/[^0-9]+/i,\'\')">');
     $input = ($input."\n".'      <br>');
     $input = ($input."\n".'      <font size="5">Pass:</font><br>');
-    $input = ($input."\n".'        <input type="password" name="pass" value="" onkeyup="this.value=this.value.replace(/[^0-9]+/i,'')" onblur="this.value=this.value.replace(/[^0-9]+/i,'')">');
+    $input = ($input."\n".'        <input type="password" name="pass" value="" onkeyup="this.value=this.value.replace(/[^0-9]+/i,\'\')" onblur="this.value=this.value.replace(/[^0-9]+/i,\'\')">');
     $input = ($input."\n".'      <br>');
     $input = ($input."\n".'      <input type="submit" name="signin" value="sign in">');
     $input = ($input."\n".'    </form>');
