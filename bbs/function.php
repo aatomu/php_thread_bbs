@@ -177,69 +177,86 @@ function thread_list() {
   } while ($file != "");
 }
 
-function file_upload() {
+function file() {
   global $save_path;
+  //アップロードのためにecho
   $input = ("\n".'    <br><br>');
   $input = ($input."\n".'    <form method="post" enctype="multipart/form-data">');
-  $input = ($input."\n".'      <font size=5>Pass:</font>');
-  $input = ($input."\n".'      <input type="text" name="up_pass" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,"");"><br>');
   $input = ($input."\n".'      <font size=5>File:</font>');
   $input = ($input."\n".'      <input type="file" name="up_file">');
+  $input = ($input."\n".'      <font size=5>Pass:</font>');
+  $input = ($input."\n".'      <input type="text" name="up_pass" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,"");"><br>');
   $input = ($input."\n".'      <input type="submit" name="up_send" value="アップロード">');
   $input = ($input."\n".'    </form>');
   $input = ($input."\n".'    <br><br>');
   echo $input;
+  //postをcheck
   if (isset($_POST['up_send']) === true ) {
+    //passとファイルのチェック
     if (strlen($_POST['up_pass']) == 5 && isset($_FILES['up_file']) === true) {
+      //ファイルサイズを保存
       $file_size = $_FILES["up_file"]["size"];
+      //日付を保存
       $date = date("Y.m.d,H_i_s");
+      //ファイル名(pass無し)を保存
       $file_name = ($date."_".$_FILES["up_file"]["name"]);
+      //名前から特殊文字を消す
       if ( preg_match("|[\s<>\"\'&]|",$file_name) != "" ) {
         $file_name = preg_replace("|[\s<>\"\'&]|","_",$file_name);
         echo ("change file name to ".$file_name."<br>");
       }
+      //一時ファイルとpassを入手
       $file_tmp = $_FILES["up_file"]["tmp_name"];
       $file_pass = $_POST['up_pass'];
+      //メッセージを表示
       echo ("upload to server : ".$file_name." , Size : ".$file_size."byte password : ".$file_pass."<br>");
+      //アップロードに成功するか確認
       if (is_uploaded_file($file_tmp)) {
+        //一時ファイルから通常ファイルに変更
         if ( move_uploaded_file($file_tmp , $save_path.$file_name."__".$file_pass)) {
-        echo $file_name . "をアップロードしました。<br><br><br>";
+          //終了メッセージ
+          echo $file_name . "をアップロードしました。<br><br><br>";
         } else {
+          //失敗メッセージ
           echo "ファイルをアップロードできません。";
         }
-        echo '<script type="text/javascript">window.location.reload();</script>';
+        $url = ((empty($_SERVER["HTTPS"]) ? "http://" : "https://").$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]);
+        header("Location: ".$url);
         exit;
       }
     } else {
+      //passとファイル どっちかがおかしいときに
       echo "ダウンロード用パスワードが短い(ない)かファイルが設定されていません<br><br>";
     }
   }
-}
-
-function file_download() {
-  global $save_path;
-  //ファイルの一覧
+  //ファイルの一覧表示
   $files=shell_exec("ls -1 ".$save_path.' | grep -E "__[0-9]{0,5}" | sed -e "s|__[0-9][0-9][0-9][0-9][0-9]||g"');
+  //ファイルをradio型のhtmlに変換
   while($files != "") {
     $file_name=preg_replace("|\n.*|u","",$files);
     $file_list=($file_list."\n".'<br><input type="radio" name="down_file" value="'.$file_name.'">'.$file_name);
     $files=str_replace($file_name."\n","",$files);
   }
+  //表示
   $input = "\n";
   $input = ($input."\n".'    ～～～ファイル一覧～～～～<br>');
   $input = ($input."\n".'    <form method="post">');
   $input = ($input."\n".'      <font size=5>File:</font>');
-  $input = ($input."\n".$file_list."<br>");
+  $input = ($input."\n".       $file_list."<br>");
   $input = ($input."\n".'      <font size=5>DownloadPass:</font>');
   $input = ($input."\n".'      <input type="text" name="down_pass" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,"");"><br>');
   $input = ($input."\n".'      <input type="submit" name="down_send" value="ダウンロード">');
   $input = ($input."\n".'    </form>');
   echo $input;
+  //postチェック
   if (isset($_POST['down_send']) === true ) {
+    //passとファイルのチェック
     if (strlen($_POST['down_pass']) == 5 && isset($_POST['down_file']) === true) {
-      $file_name = shell_exec("ls ".$save_path."| grep \"".$_POST['down_file']."\"");
+      //ファイル名保存
+      $file_name = shell_exec("ls -1 ".$save_path."| grep \"".$_POST['down_file']."\"");
+      //ファイル名からpassを入手
       $file_pass = preg_replace("|.*__|","",$file_name);
-      $file_pass = preg_replace("|\s|","",$file_pass);
+      //postからpassを確認
       if ($_POST['down_pass'] == $file_pass) {
         // ファイルのパス
         $filepath = ($save_path.$_POST['down_file']."__".$file_pass);
@@ -252,9 +269,11 @@ function file_download() {
         // ファイルを読み込みダウンロードを実行
         readfile($filepath);
       } else {
-        echo "ダウンロードパスワードが正しくないかファイル名が間違っています<br><br>";
+        //パスワードチェック
+        echo "ダウンロードパスワードが間違っています<br><br>";
       }
     } else {
+      //失敗時に表示
       echo "ダウンロードパスワードが短い(ない)かファイル名が設定されていません<br><br>";
     }
   }
