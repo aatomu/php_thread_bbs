@@ -35,10 +35,10 @@ function thread_box_user() {
   } else {
     $input = ("\n".'    <form action="" method="post">');
     $input = ($input."\n".'      <font size="5">Name:</font><br>');
-    $input = ($input."\n".'        <input type="text" name="user" value="" oninput="value = value.replace(/[^0-9a-zA-Z]+/i,\'\')">');
+    $input = ($input."\n".'        <input type="text" name="user" value="" onkeyup="this.value=this.value.replace(/[^0-9]+/i,'')" onblur="this.value=this.value.replace(/[^0-9]+/i,'')">');
     $input = ($input."\n".'      <br>');
     $input = ($input."\n".'      <font size="5">Pass:</font><br>');
-    $input = ($input."\n".'        <input type="password" name="pass" value="" oninput="value = value.replace(/[^0-9a-zA-Z]+/i,\'\')">');
+    $input = ($input."\n".'        <input type="password" name="pass" value="" onkeyup="this.value=this.value.replace(/[^0-9]+/i,'')" onblur="this.value=this.value.replace(/[^0-9]+/i,'')">');
     $input = ($input."\n".'      <br>');
     $input = ($input."\n".'      <input type="submit" name="signin" value="sign in">');
     $input = ($input."\n".'    </form>');
@@ -185,7 +185,7 @@ function file() {
   $input = ($input."\n".'      <font size=5>File:</font>');
   $input = ($input."\n".'      <input type="file" name="up_file">');
   $input = ($input."\n".'      <font size=5>Pass:</font>');
-  $input = ($input."\n".'      <input type="text" name="up_pass" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,"");"><br>');
+  $input = ($input."\n".'      <input type="text" name="up_pass" maxlength="5" onkeyup="this.value=this.value.replace(/[^0-9]+/i,'')" onblur="this.value=this.value.replace(/[^0-9]+/i,'')"><br>');
   $input = ($input."\n".'      <input type="submit" name="up_send" value="アップロード">');
   $input = ($input."\n".'    </form>');
   $input = ($input."\n".'    <br><br>');
@@ -244,7 +244,7 @@ function file() {
   $input = ($input."\n".'      <font size=5>File:</font>');
   $input = ($input."\n".       $file_list."<br>");
   $input = ($input."\n".'      <font size=5>DownloadPass:</font>');
-  $input = ($input."\n".'      <input type="text" name="down_pass" maxlength="5" oninput="value = value.replace(/[^0-9]+/i,"");"><br>');
+  $input = ($input."\n".'      <input type="text" name="down_pass" maxlength="5" onkeyup="this.value=this.value.replace(/[^0-9]+/i,'')" onblur="this.value=this.value.replace(/[^0-9]+/i,'')"><br>');
   $input = ($input."\n".'      <input type="submit" name="down_send" value="ダウンロード">');
   $input = ($input."\n".'    </form>');
   echo $input;
