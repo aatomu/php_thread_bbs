@@ -14,8 +14,8 @@ function thread_box() {
 
 function thread_box_user() {
   global $users;
-  if (isset($_SESSION['user']) == true && isset($_SESSION['pass']) == true) {
-    if (isset($_POST['signout']) == true) {
+  if (isset($_SESSION['user']) === true && isset($_SESSION['pass']) === true) {
+    if (isset($_POST['signout']) === true) {
       unset($_SESSION['user']);
       unset($_SESSION['pass']);
       echo '<script type="text/javascript">window.location.reload();</script>';
@@ -43,7 +43,7 @@ function thread_box_user() {
     $input = ($input."\n".'      <input type="submit" name="signin" value="sign in">');
     $input = ($input."\n".'    </form>');
     echo $input;
-    if (isset($_POST['signin']) == true) {
+    if (isset($_POST['signin']) === true) {
       $_SESSION['user_tmp'] = $_POST['user'];
       $_SESSION['pass_tmp'] = $_POST['pass'];
       if (shell_exec("cat ".$users." | grep -i -e '^".$_SESSION['user_tmp'].":".$_SESSION['pass_tmp']."$'") != "") {
@@ -54,7 +54,7 @@ function thread_box_user() {
         exit;
       } else {
         echo "unknown user or password<br>";
-        if (shell_exec("cat ".$users." | grep -i -e '^".$_SESSION['user_tmp'].":'") == "") {
+        if (shell_exec("cat ".$users." | grep -i -e '^".$_SESSION['user_tmp'].":'") === "") {
         $input = ("\n".'    <form action="" method="post">');
         $input = ($input."\n".'      <input type="submit" name="signup" value="sign up it data">');
         $input = ($input."\n".'    </form>');
@@ -63,8 +63,8 @@ function thread_box_user() {
       }
     }
   }
-  if (isset($_POST['signup']) == true) {
-    if (shell_exec("cat ".$users." | grep -i -e \"^".$_SESSION['user_tmp'].":\"") == "" && $_SESSION['user_tmp'] != "") {
+  if (isset($_POST['signup']) === true) {
+    if (shell_exec("cat ".$users." | grep -i -e \"^".$_SESSION['user_tmp'].":\"") === "" && $_SESSION['user_tmp'] != "") {
       $write = ($_SESSION['user_tmp'].":".$_SESSION['pass_tmp']."\n");
       file_put_contents($users,$write,FILE_APPEND | LOCK_EX);
       //sessionに保存
@@ -91,9 +91,9 @@ function thread_write() {
           exit;
         }
         //メッセージのいろいろ
-        if (isset($_POST['name']) == true) {
+        if (isset($_POST['name']) === true) {
           $name = $_POST["name"];
-        } else if (isset($_SESSION['user']) == true) {
+        } else if (isset($_SESSION['user']) === true) {
           $name = $_SESSION['user'];
         }
         $message = $_POST["message"];
@@ -123,10 +123,10 @@ function thread_command() {
     //処理するために変形
     $newpage = ("./thread/".$newpage.".txt");
     //page生成
-    if ($type == "create") {
+    if ($type === "create") {
       touch($newpage);
       chmod($newpage,0677);
-    } else if ($type == "delete") {
+    } else if ($type === "delete") {
       unlink($newpage);
     }
   }
@@ -252,8 +252,6 @@ function file() {
         //ファイル名からpassを入手
         $file_pass = preg_replace("|.*__|","",$file_name);
         $file_pass = preg_replace("|\n|","",$file_pass);
-        //入力
-        $pass_word = preg_replace("|\n|","",$_POST['down_pass']);
         //postからpassを確認
         if ($_POST['down_pass'] === $file_pass ) {
           // ファイルのパス
@@ -264,6 +262,34 @@ function file() {
           header('Content-Length: '.filesize($filepath));
           // ファイルのダウンロード、リネームを指示
           header('Content-Disposition: attachment; filename="'.$_POST['down_file'].'"');
+          // ファイルを読み込みダウンロードを実行
+          readfile($filepath);
+        } else {
+          //パスワードチェック
+          echo "ダウンロードパスワードが間違っています<br><br>";
+        }
+      } else {
+        //失敗時に表示
+        echo "ダウンロードに失敗しました";
+      }
+
+      //URLだけでDL
+      if (isset($_GET['file']) === true && isset($_GET['pass']) === true ) {
+        //ファイル名保存
+        $file_name = shell_exec("ls -1 ".$save_path."| grep \"".$_GET['file']."\"");
+        //ファイル名からpassを入手
+        $file_pass = preg_replace("|.*__|","",$file_name);
+        $file_pass = preg_replace("|\n|","",$file_pass);
+        //postからpassを確認
+        if ($_GET['pass'] === $file_pass ) {
+          // ファイルのパス
+          $filepath = ($save_path.$_GET['file']."__".$file_pass);
+          // ファイルタイプを指定
+          header('Content-Type: application/force-download');
+          // ファイルサイズを取得し、ダウンロードの進捗を表示
+          header('Content-Length: '.filesize($filepath));
+          // ファイルのダウンロード、リネームを指示
+          header('Content-Disposition: attachment; filename="'.$_GET['file'].'"');
           // ファイルを読み込みダウンロードを実行
           readfile($filepath);
         } else {
