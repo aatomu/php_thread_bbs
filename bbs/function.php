@@ -263,6 +263,7 @@ function file() {
           // ファイルのダウンロード、リネームを指示
           header('Content-Disposition: attachment; filename="'.$_POST['down_file'].'"');
           // ファイルを読み込みダウンロードを実行
+          ob_end_clean();
           readfile($filepath);
         } else {
           //パスワードチェック
@@ -291,6 +292,7 @@ function file() {
           // ファイルのダウンロード、リネームを指示
           header('Content-Disposition: attachment; filename="'.$_GET['file'].'"');
           // ファイルを読み込みダウンロードを実行
+          ob_end_clean();
           readfile($filepath);
         } else {
           //パスワードチェック
