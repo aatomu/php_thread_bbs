@@ -255,7 +255,7 @@ function file() {
         //入力
         $pass_word = preg_replace("|\n|","",$_POST['down_pass']);
         //postからpassを確認
-        if ($_POST['down_pass'] == $file_pass ) {
+        if ($_POST['down_pass'] === $file_pass ) {
           // ファイルのパス
           $filepath = ($save_path.$_POST['down_file']."__".$file_pass);
           // ファイルタイプを指定
