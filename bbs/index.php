@@ -69,9 +69,9 @@
           <td>
             create by
             <br>
-            atomu21263
+            aatomu
             <br>
-            <a href="https://twitter.com/atomu21263">
+            <a href="https://twitter.com/aatomu">
               >twitter<
             </a>
         </tr>

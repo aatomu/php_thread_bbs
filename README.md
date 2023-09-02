@@ -15,7 +15,7 @@ PHPで2ch(5ch?)っぽいのを作りました.
 # インストール&使い方  
 ## 1.インストール(ダウンロード)  
  * cd /web/server/path  
- * git clone https://github.com/atomu21263/php_thread_bbs.git  
+ * git clone https://github.com/aatomu/php_thread_bbs.git  
 ## 2.インストール(設定 *念のためやります) 要検証  
  * chmod 775 ./index.php  
  * chmod 775 ./function.php  
@@ -24,7 +24,7 @@ PHPで2ch(5ch?)っぽいのを作りました.
  * (任意) 任意のエディターでindex.phpの$maxlineを設定(初期は500) これの数値によって保存限界(≒表示限界)が変わります
 　※また多すぎると2回リロードしないと表示されない可能性あり  
  * (任意) 任意のエディターでindex.phpの$user_lockを設定(初期はfalse) これによってsignupが必要かが変わります
-  > 楽をする用: git clone https://github.com/atomu21263/php_thread_bbs.git ; cd ./php_thread_bbs/bbs/ ; chmod 775 ./* ; chmod 777 ./thread ;chmod 776 ./thread/*  
+  > 楽をする用: git clone https://github.com/aatomu/php_thread_bbs.git ; cd ./php_thread_bbs/bbs/ ; chmod 775 ./* ; chmod 777 ./thread ;chmod 776 ./thread/*  
 ## 3.使い方(ぺージの作成)  
  * ブラウザからweb鯖にはいりbbs/?select_page=<任意>&type=create  
 ## 4.使い方(実際に読み書きする)  
